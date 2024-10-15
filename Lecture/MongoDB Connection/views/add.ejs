@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add User</title>
+</head>
+
+<body>
+    <div align="center">
+        <h2>Add User</h2>
+        <form method="post" action="/insertRecord">
+            <table border="2">
+                <tr>
+                    <td>Name :- </td>
+                    <td><input type="text" name="name"></td>
+                </tr>
+                <tr>
+                    <td>Email :- </td>
+                    <td><input type="text" name="email"></td>
+                </tr>
+                <tr>
+                    <td>Password :- </td>
+                    <td><input type="text" name="password"></td>
+                </tr>
+                <tr>
+                    <td>Gender :- </td>
+                    <td>
+                        <input type="radio" name="gender" value="male">Male
+                        <input type="radio" name="gender" value="female">Female
+                    </td>
+                </tr>
+                <tr>
+                    <td>Hobby :- </td>
+                    <td>
+                        <input type="checkbox" name="hobby" value="reading">Reading
+                        <input type="checkbox" name="hobby" value="cooking">Cooking
+                        <input type="checkbox" name="hobby" value="writing">Writing
+                    </td>
+                </tr>
+                <tr>
+                    <td>City :- </td>
+                    <td>
+                        <select name="city">
+                            <option>---Select City---</option>
+                            <% const city=["Surat","Vadodara","Ahemdabad","Rajkot"]; city.map((ci)=>{
+                                %>
+                                <option value="<%= ci %>">
+                                    <%= ci %>
+                                </option>
+                                <% }) %>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Phone :- </td>
+                    <td><input type="number" name="phone"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit"></td>
+                </tr>
+            </table>
+        </form>
+        <a href="/">View</a>
+    </div>
+
+</body>
+
+</html>
