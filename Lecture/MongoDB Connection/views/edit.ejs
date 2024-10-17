@@ -10,7 +10,8 @@
 <body>
     <div align="center">
         <h2>Edit User</h2>
-        <form method="post" action="/insertRecord">
+        <form method="post" action="/updateRecord">
+            <input type="hidden" name="editid" value="<%= data.id %>">
             <table border="2">
                 <tr>
                     <td>Name :- </td>
@@ -41,7 +42,7 @@
                         <input type="checkbox" name="hobby" <% if(data.hobby.includes("cooking")) { %> checked <% } %> 
                             value="cooking">Cooking
                         <input type="checkbox" name="hobby" <% if(data.hobby.includes("writing")) { %> checked <% } %> 
-                            +value="writing">Writing
+                            value="writing">Writing
                     </td>
                 </tr>
                 <tr>

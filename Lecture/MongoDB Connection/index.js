@@ -55,7 +55,7 @@ app.post('/insertRecord', (req, res) => {
 
 app.get('/editRecord', (req, res) => {
     let id = req.query.Id;
-    // console.log(id);
+    console.log(id);
 
     User.findById(id)
         .then((single) => {
@@ -79,6 +79,27 @@ app.get('/deleteRecord', (req, res) => {
             console.log(err);
             return false;
         })
+})
+
+app.post('/updateRecord', (req, res) => {
+    const {editid, name, email, password, gender, hobby, city, phone } = req.body;
+    console.log(name, email, password, gender, hobby, city, phone);
+    
+    User.findByIdAndUpdate(editid,{
+        name: name,
+        email: email,
+        password: password,
+        gender: gender,
+        hobby: hobby,
+        city: city,
+        phone: phone
+    }).then((data) => {
+        console.log("User Update");
+        return res.redirect('/');
+    }).catch((err)=> {
+        console.log(err);
+        return false;
+    })
 })
 
 app.listen(port, (err) => {
