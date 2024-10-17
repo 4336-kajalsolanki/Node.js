@@ -12,6 +12,24 @@ const User = require('./models/UserModel')
 
 app.use(express.urlencoded());
 
+const multer = require('multer');
+
+const path = require('path')
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads")))
+
+const st = multer.diskStorage({
+    destination: (req, res, cb) => {
+        cb(null, "uploads")
+    },
+    filename: (req, file, cb) => {
+        const uniq = Math.floor(Math.random() * 100000);
+        cb(null, `${file.fieldname} - ${uniq}`)
+    }
+})
+
+const fileUpload = multer({ storage: st }).single('avtar');
+
 app.get('/', (req, res) => {
     User.find({})
         .then((data) => {
@@ -33,7 +51,7 @@ app.get('/', (req, res) => {
     return res.render('view')
 })
 
-app.post('/insertRecord', (req, res) => {
+app.post('/insertRecord', fileUpload, (req, res) => {
     const { name, email, password, gender, hobby, city, phone } = req.body;
     UserModel.create({
         name: name,
@@ -42,7 +60,8 @@ app.post('/insertRecord', (req, res) => {
         gender: gender,
         hobby: hobby,
         city: city,
-        phone: phone
+        phone: phone,
+        image: req.file.path
     }).then((data, err) => {
         if (err) {
             console.log(err);
@@ -55,7 +74,7 @@ app.post('/insertRecord', (req, res) => {
 
 app.get('/editRecord', (req, res) => {
     let id = req.query.Id;
-    console.log(id);
+    //
 
     User.findById(id)
         .then((single) => {
@@ -82,10 +101,10 @@ app.get('/deleteRecord', (req, res) => {
 })
 
 app.post('/updateRecord', (req, res) => {
-    const {editid, name, email, password, gender, hobby, city, phone } = req.body;
+    const { editid, name, email, password, gender, hobby, city, phone } = req.body;
     console.log(name, email, password, gender, hobby, city, phone);
-    
-    User.findByIdAndUpdate(editid,{
+
+    User.findByIdAndUpdate(editid, {
         name: name,
         email: email,
         password: password,
@@ -96,7 +115,7 @@ app.post('/updateRecord', (req, res) => {
     }).then((data) => {
         console.log("User Update");
         return res.redirect('/');
-    }).catch((err)=> {
+    }).catch((err) => {
         console.log(err);
         return false;
     })

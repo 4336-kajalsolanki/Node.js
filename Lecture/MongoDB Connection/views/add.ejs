@@ -10,7 +10,7 @@
 <body>
     <div align="center">
         <h2>Add User</h2>
-        <form method="post" action="/insertRecord">
+        <form method="post" action="/insertRecord" enctype="multipart/form-data">
             <table border="2">
                 <tr>
                     <td>Name :- </td>
@@ -56,6 +56,10 @@
                 <tr>
                     <td>Phone :- </td>
                     <td><input type="number" name="phone"></td>
+                </tr>
+                <tr>
+                    <td>Image :- </td>
+                    <td><input type="file" name="avtar"></td>
                 </tr>
                 <tr>
                     <td></td>

@@ -21,12 +21,13 @@
                     <th>Hobby</th>
                     <th>City</th>
                     <th>Phone</th>
+                    <th>Image</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 <% record.map((val,i)=>{ 
-                    const {id,name,email,password,gender,hobby,city,phone} = val;
+                    const {id,name,email,password,gender,hobby,city,phone,image} = val;
                     %>
                     <tr>
                         <td><%= ++i %></td>
@@ -37,6 +38,9 @@
                         <td><%= hobby %></td>
                         <td><%= city %></td>
                         <td><%= phone %></td>
+                        <td>
+                            <img src="<%= image %>" width="100"/>
+                        </td>
                         <td>
                             <a href="/deleteRecord?deleteId=<%= id %>">Delete</a> ||
                             <a href="/editRecord?Id=<%= id %>">Edit</a>
