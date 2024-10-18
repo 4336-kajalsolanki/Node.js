@@ -1,6 +1,6 @@
 const express = require('express');
 
-const port = 9850;
+const port = 9750;
 
 const app = express();
 
@@ -12,35 +12,18 @@ const User = require('./models/UserModel')
 
 app.use(express.urlencoded());
 
-const multer = require('multer');
-
-const path = require('path')
-
-app.use("/uploads", express.static(path.join(__dirname, "uploads")))
-
-const st = multer.diskStorage({
-    destination: (req, res, cb) => {
-        cb(null, "uploads")
-    },
-    filename: (req, file, cb) => {
-        const uniq = Math.floor(Math.random() * 100000);
-        cb(null, `${file.fieldname} - ${uniq}`)
-    }
-})
-
-const fileUpload = multer({ storage: st }).single('avtar');
-
 app.get('/', (req, res) => {
     User.find({})
         .then((data) => {
             return res.render('view', {
-                record: data
+                books: data
             })
         }).catch((err) => {
             console.log(err);
             return false;
         })
 })
+
 app.get('/add', (req, res) => {
     return res.render('add')
 })
@@ -51,17 +34,13 @@ app.get('/', (req, res) => {
     return res.render('view')
 })
 
-app.post('/insertRecord', fileUpload, (req, res) => {
-    const { name, email, password, gender, hobby, city, phone } = req.body;
+app.post('/insertBook', (req, res) => {
+    const { book_name, book_author, book_price, book_pages } = req.body;
     UserModel.create({
-        name: name,
-        email: email,
-        password: password,
-        gender: gender,
-        hobby: hobby,
-        city: city,
-        phone: phone,
-        image: req.file.path
+        book_name: book_name,
+        book_author: book_author,
+        book_price: book_price,
+        book_pages: book_pages
     }).then((data, err) => {
         if (err) {
             console.log(err);
@@ -72,9 +51,8 @@ app.post('/insertRecord', fileUpload, (req, res) => {
     })
 })
 
-app.get('/editRecord', (req, res) => {
+app.get('/editBook', (req, res) => {
     let id = req.query.Id;
-    //
 
     User.findById(id)
         .then((single) => {
@@ -88,7 +66,7 @@ app.get('/editRecord', (req, res) => {
         })
 })
 
-app.get('/deleteRecord', (req, res) => {
+app.get('/deleteBook', (req, res) => {
     let id = req.query.deleteId;
     User.findByIdAndDelete(id)
         .then((data) => {
@@ -100,18 +78,15 @@ app.get('/deleteRecord', (req, res) => {
         })
 })
 
-app.post('/updateRecord', (req, res) => {
-    const { editid, name, email, password, gender, hobby, city, phone } = req.body;
-    console.log(name, email, password, gender, hobby, city, phone);
+app.post('/updateBook', (req, res) => {
+    const { editid, book_name, book_author, book_price, book_pages } = req.body;
+    console.log(book_name, book_author, book_price, book_pages);
 
     User.findByIdAndUpdate(editid, {
-        name: name,
-        email: email,
-        password: password,
-        gender: gender,
-        hobby: hobby,
-        city: city,
-        phone: phone
+        book_name: book_name,
+        book_author: book_author,
+        book_price: book_price,
+        book_pages: book_pages
     }).then((data) => {
         console.log("User Update");
         return res.redirect('/');

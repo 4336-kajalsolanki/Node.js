@@ -10,7 +10,7 @@
 <body>
     <div align="center">
         <h2>Edit User</h2>
-        <form method="post" action="/updateRecord">
+        <form method="post" action="/updateRecord" enctype="multipart/form-data">
             <input type="hidden" name="editid" value="<%= data.id %>">
             <table border="2">
                 <tr>
@@ -39,9 +39,9 @@
                     <td>
                         <input type="checkbox" name="hobby" <% if(data.hobby.includes("reading")) { %> checked <% } %>
                             value="reading">Reading
-                        <input type="checkbox" name="hobby" <% if(data.hobby.includes("cooking")) { %> checked <% } %> 
+                        <input type="checkbox" name="hobby" <% if(data.hobby.includes("cooking")) { %> checked <% } %>
                             value="cooking">Cooking
-                        <input type="checkbox" name="hobby" <% if(data.hobby.includes("writing")) { %> checked <% } %> 
+                        <input type="checkbox" name="hobby" <% if(data.hobby.includes("writing")) { %> checked <% } %>
                             value="writing">Writing
                     </td>
                 </tr>
@@ -52,7 +52,7 @@
                             <option>---Select City---</option>
                             <% const city=["Surat","Vadodara","Ahemdabad","Rajkot"]; city.map((ci)=>{
                                 %>
-                                <option <% if(data.city==ci) { %> selected <% } %> value="<%= ci %>"><%= ci %>
+                            <option <% if(data.city==ci) { %> selected <% } %> value="<%= ci %>"><%= ci %>
                                 </option>
                                 <% }) %>
                         </select>
@@ -61,6 +61,13 @@
                 <tr>
                     <td>Phone :- </td>
                     <td><input type="number" value="<%= data.phone %>" name="phone"></td>
+                </tr>
+                <tr>
+                    <td>Image :- </td>
+                    <td>
+                        <input type="file" name="avtar">
+                        <img src="<%= data.image %>" width="100" alt="">
+                    </td>
                 </tr>
                 <tr>
                     <td></td>

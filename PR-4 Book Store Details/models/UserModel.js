@@ -1,31 +1,19 @@
 const mongoose = require('mongoose');
 const UserSchema = mongoose.Schema({
-    name: {
+    book_name: {
         type: String,
         required: true,
     },
-    email: {
+    book_author: {
         type: String,
         required: true,
     },
-    password: {
+    book_price: {
         type: String,
         required: true,
     },
-    gender: {
-        type: String,
-        required: true,
-    },
-    hobby: {
+    book_pages: {
         type: Array,
-        required: true,
-    },
-    city: {
-        type: String,
-        required: true,
-    },
-    phone: {
-        type: Number,
         required: true,
     },
 })
