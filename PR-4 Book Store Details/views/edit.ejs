@@ -11,7 +11,7 @@
 
     <style>
         body {
-            background: linear-gradient(135deg, #ff9ff3, #feca57);
+            background: linear-gradient(135deg, #74b9ff, #ffeaa7);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -22,14 +22,14 @@
         .form-container {
             width: 80%;
             max-width: 600px;
-            background-color: #fff;
+            background-color: #ffffff;
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
-            color: #e84393;
+            color: #0984e3;
             text-align: center;
             margin-bottom: 20px;
         }
@@ -51,34 +51,33 @@
             <input type="hidden" name="editid" value="<%= data.id %>">
 
             <div class="mb-3">
-                <label for="book_name" class="form-label">Book Name</label>
-                <input type="text" class="form-control" id="book_name" name="book_name" value="<%= data.book_name %>"required>
+                <label for="book_name" class="form-label">Book_Name</label>
+                <input type="text" class="form-control" id="book_name" name="book_name" value="<%= data.book_name %>"
+                    required>
             </div>
 
             <div class="mb-3">
-                <label for="book_price" class="form-label">Book Price (₹)</label>
+                <label for="book_author" class="form-label">Book_Author</label>
+                <input type="text" class="form-control" id="book_author" name="book_author"
+                    value="<%= data.book_author %>" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="book_price" class="form-label">Book_Price (₹)</label>
                 <input type="number" class="form-control" id="book_price" name="book_price"
                     value="<%= data.book_price %>" required>
             </div>
 
             <div class="mb-3">
-                <label for="book_pages" class="form-label">Book Pages</label>
+                <label for="book_pages" class="form-label">Book_Pages</label>
                 <select class="form-select" id="book_pages" name="book_pages" required>
-                    <option>--- Select Page Range---</option>
-                    <% const pagesOptions=["50 - 100 Pages","101 - 200 Pages","201 - 300 Pages","301 - 500 Pages","500+
-                        Pages"]; %>
-                        <% pagesOptions.map(pages=> { %>
-                            <option value="<%= pages %>" <% if (data.book_pages==pages) { %>selected<% } %>>
-                                    <%= pages %> Pages
-                            </option>
-                            <% }); %>
+                    <option disabled>--- Select Page Range ---</option>
+                    <% const pagesOptions=["50 - 100 Pages", "101 - 200 Pages", "201 - 300 Pages", "301 - 500 Pages", "500+ Pages" ]; pagesOptions.map((pages)=> { %>
+                        <option <% if(data.book_pages==pages) { %> selected <% } %>
+                                value="<%= pages %>"><%= pages %>
+                        </option>
+                        <% }) %>
                 </select>
-            </div>
-
-            <div class="mb-3">
-                <label for="book_author" class="form-label">Book Author</label>
-                <input type="text" class="form-control" id="book_author" name="book_author"
-                    value="<%= data.book_author %>" required>
             </div>
 
             <button type="submit" class="btn btn-primary">Update Book</button>

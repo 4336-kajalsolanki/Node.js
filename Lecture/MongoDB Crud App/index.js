@@ -118,7 +118,7 @@ app.post('/updateRecord', fileUpload, (req, res) => {
     console.log(name, email, password, gender, hobby, city, phone);
 
     if (req.res) {
-        // old file remove //
+        // Old File Remove //
         User.findById(editid)
             .then((single) => {
                 fs.unlinkSync(single.image);
@@ -127,7 +127,7 @@ app.post('/updateRecord', fileUpload, (req, res) => {
                 console.log(err);
                 return false;
             });
-        // new file add //
+        // New File Add //
         User.findByIdAndUpdate(editid, {
             name: name,
             email: email,
@@ -136,7 +136,7 @@ app.post('/updateRecord', fileUpload, (req, res) => {
             hobby: hobby,
             city: city,
             phone: phone,
-            image: req.file.path,
+            image: req.file.path
         })
             .then((data) => {
                 console.log("User Update");
