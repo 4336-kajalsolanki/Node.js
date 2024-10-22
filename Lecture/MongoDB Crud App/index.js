@@ -8,7 +8,7 @@ const db = require('./config/db');
 
 app.set('view engine', 'ejs');
 
-const User = require('./models/UserModel')
+const User = require('./models/UserModel');
 
 app.use(express.urlencoded());
 
@@ -16,13 +16,13 @@ const multer = require('multer');
 
 const path = require('path');
 
-const fs = require("fs");
+const fs = require('fs');
 
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+ 
 const st = multer.diskStorage({
     destination: (req, res, cb) => {
-        cb(null, "uploads")
+        cb(null, 'uploads');
     },
     filename: (req, file, cb) => {
         const uniq = Math.floor(Math.random() * 100000);
@@ -30,13 +30,13 @@ const st = multer.diskStorage({
     },
 });
 
-const fileUpload = multer({ storage: st }).single('avtar');
+const fileUpload = multer({ storage: st }).single("avtar");
 
 app.get('/', (req, res) => {
     User.find({})
         .then((data) => {
             return res.render('view', {
-                record: data
+                record: data,
             });
         })
         .catch((err) => {
@@ -65,11 +65,11 @@ app.post('/insertRecord', fileUpload, (req, res) => {
         hobby: hobby,
         city: city,
         phone: phone,
-        image: req.file.path
+        image: req.file.path,
     }).then((data, err) => {
         if (err) {
             console.log(err);
-            return false
+            return false;
         }
         console.log(`Record Add`);
         return res.redirect('/add');
@@ -81,7 +81,7 @@ app.get('/editRecord', (req, res) => {
 
     User.findById(id)
         .then((single) => {
-            return res.render("edit", {
+            return res.render('edit', {
                 data: single,
             });
         })
@@ -117,7 +117,7 @@ app.post('/updateRecord', fileUpload, (req, res) => {
     const { editid, name, email, password, gender, hobby, city, phone } = req.body;
     console.log(name, email, password, gender, hobby, city, phone);
 
-    if (req.res) {
+    if (req.file) {
         // Old File Remove //
         User.findById(editid)
             .then((single) => {
@@ -136,7 +136,7 @@ app.post('/updateRecord', fileUpload, (req, res) => {
             hobby: hobby,
             city: city,
             phone: phone,
-            image: req.file.path
+            image: req.file.path,
         })
             .then((data) => {
                 console.log("User Update");
