@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Record</title>
+</head>
+
+<body>
+    <div align="center">
+        <h2>View Record</h2>
+        <table border="2">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Password</td>
+                    <td>Gender</td>
+                    <td>Hobby</td>
+                    <td>City</td>
+                    <td>Image</td>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.map((val,i)=>{
+                    const {name,email,password,gender,hobby,city,image} = val;
+                    %>
+                    <tr>
+                        <td>
+                            <%= ++i %>
+                        </td>
+                        <td>
+                            <%= val.name %>
+                        </td>
+                        <td>
+                            <%= val.email %>
+                        </td>
+                        <td>
+                            <%= val.password %>
+                        </td>
+                        <td>
+                            <%= val.gender %>
+                        </td>
+                        <td>
+                            <%= val.hobby %>
+                        </td>
+                        <td>
+                            <%= val.city %>
+                        </td>
+                        <td>
+                            <img src="<%= val.image %>" width="100" />
+                        </td>
+                        <td>
+                            <a href="/editRecord?id=<%= val.id %>">Edit</a> ||
+                            <a href="/deleteRecord?id=<%= val.id %>">Delete</a>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+        <a href="/">Add</a>
+    </div>
+</body>
+
+</html>
