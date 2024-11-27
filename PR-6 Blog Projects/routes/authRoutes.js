@@ -1,4 +1,5 @@
 const express = require('express');
+
 const { LoginPage, RegisterPage, registerUser, DashboardPage, loginUser, Logout } = require('../controllers/AuthController');
 
 const routes = express.Router();

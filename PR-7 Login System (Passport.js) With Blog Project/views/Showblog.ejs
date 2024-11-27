@@ -25,7 +25,8 @@
                                                     <%= val.title %>
                                                 </h5>
                                                 <p class="card-text">
-                                                    <%= val.description %>
+                                                    <%= val.description.slice(0,100) %>...
+                                                    <a href="/readmore?id=<%= val.id %>" class="read-more">Read More</a>
                                                 </p>
                                                 <div class="d-flex justify-content-between">
                                                     <a class="btn btn-primary"

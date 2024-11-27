@@ -1,7 +1,8 @@
 const express = require('express');
+
 const routes = express.Router();
 
-const { AddBlog, insertBlog, Showblog, deleteBlog, editBlog, UpdateBlog, readMore, } = require('../controllers/CrudController');
+const { AddBlog, insertBlog, Showblog, deleteBlog, editBlog, UpdateBlog, readMore } = require('../controllers/CrudController');
 
 const multer = require('multer');
 const st = multer.diskStorage({

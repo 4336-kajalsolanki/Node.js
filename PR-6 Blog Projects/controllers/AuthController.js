@@ -1,4 +1,5 @@
 const UserModel = require('../models/authModel');
+
 const BlogModel = require('../models/crudModel');
 
 const LoginPage = (req, res) => {

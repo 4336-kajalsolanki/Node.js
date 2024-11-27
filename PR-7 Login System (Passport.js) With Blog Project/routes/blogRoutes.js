@@ -2,7 +2,7 @@ const express = require('express');
 
 const routes = express.Router();
 
-const { AddBlog, insertBlog, Showblog, deleteBlog, editBlog, UpdateBlog, } = require('../controllers/BlogController');
+const { AddBlog, insertBlog, Showblog, deleteBlog, editBlog, UpdateBlog, readMore } = require('../controllers/BlogController');
 
 const multer = require('multer');
 const st = multer.diskStorage({
@@ -18,6 +18,7 @@ const fileUpload = multer({ storage: st }).single('image');
 
 routes.get('/add', AddBlog);
 routes.get('/admin', Showblog)
+routes.get('/readmore',readMore)
 routes.post('/insertBlog', fileUpload, insertBlog);
 routes.get('/deleteBlog', deleteBlog)
 routes.get('/editBlog', editBlog)
