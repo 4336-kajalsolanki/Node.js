@@ -1,6 +1,6 @@
-const BlogModle = require('../models/crudModel');
+const BlogModel = require('../models/crudModel');
 const fs = require('fs');
-const path = require('path'); 
+const path = require('path');
 
 const AddBlog = (req, res) => {
     return res.render("Addblog");
@@ -8,23 +8,23 @@ const AddBlog = (req, res) => {
 
 const Showblog = async (req, res) => {
     try {
-        const blog = await BlogModle.find();
+        const blog = await BlogModel.find();
         res.render('Showblog', { blog: blog });
     } catch (error) {
         console.log(error);
         return false;
-    }       
+    }
 }
 
 const insertBlog = async (req, res) => {
     try {
         const { title, description } = req.body;
-        await BlogModle.create({
+        await BlogModel.create({
             title: title,
             description: description,
             image: req.file.path
         });
-        console.log("Blog Add successfully");
+        console.log("Blog Add Successfully");
         return res.redirect('/admin');
     } catch (err) {
         console.log(err);
@@ -35,9 +35,9 @@ const insertBlog = async (req, res) => {
 const deleteBlog = async (req, res) => {
     try {
         const deid = req.query.deletId;
-        let single = await BlogModle.findById(deid);
+        let single = await BlogModel.findById(deid);
         fs.unlinkSync(single.image);
-        await BlogModle.findByIdAndDelete(deid);  
+        await BlogModel.findByIdAndDelete(deid);
         console.log("Deleted..");
         return res.redirect('/admin');
     } catch (error) {
@@ -49,7 +49,7 @@ const deleteBlog = async (req, res) => {
 const editBlog = async (req, res) => {
     try {
         const eid = req.query.editId;
-        const single = await BlogModle.findById(eid);
+        const single = await BlogModel.findById(eid);
         return res.render('Editblog', { single });
     } catch (error) {
         console.log(error);
@@ -61,9 +61,9 @@ const UpdateBlog = async (req, res) => {
     try {
         const { editid, title, description } = req.body;
         if (req.file) {
-            const single = await BlogModle.findById(editid);
+            const single = await BlogModel.findById(editid);
             fs.unlinkSync(single.image);
-            await BlogModle.findByIdAndUpdate(editid, {
+            await BlogModel.findByIdAndUpdate(editid, {
                 title: title,
                 description: description,
                 image: req.file.path
@@ -71,8 +71,8 @@ const UpdateBlog = async (req, res) => {
             console.log("Updated..");
             return res.redirect('/admin');
         } else {
-            const single = await BlogModle.findById(editid);
-            await BlogModle.findByIdAndUpdate(editid, {
+            const single = await BlogModel.findById(editid);
+            await BlogModel.findByIdAndUpdate(editid, {
                 title: title,
                 description: description,
                 image: single.image

@@ -45,7 +45,7 @@ passport.checkUser = (req, res, next) => {
 
 passport.setUser = (req, res, next) => {
     if (req.isAuthenticated()) {
-        res.locals.users = req.user;
+        res.locals.user = req.user;
     }
     return next();
 }

@@ -1,6 +1,5 @@
-// Import the UserModel and BlogModel for interacting with user and blog data
 const UserModel = require('../models/authModel');
-const BlogModle = require('../models/crudModel');
+const BlogModel = require('../models/crudModel');
 
 const LoginPage = (req, res) => {
     if (req.cookies['auth']) {
@@ -28,7 +27,7 @@ const loginUser = async (req, res) => {
     const { email, password } = req.body;
     const user = await UserModel.findOne({ email: email });
     if (!user || user.password != password) {
-        console.log("Invalid Email or Password");
+        console.log("Invalid Email Or Password");
         return res.redirect('/');
     }
     res.cookie('auth', user);
@@ -39,7 +38,7 @@ const DashboardPage = (req, res) => {
     if (!req.cookies['auth']) {
         return res.redirect('/');
     }
-    const blog = BlogModle.find();
+    const blog = BlogModel.find();
     res.render('Showblog', { blog: blog });
 }
 

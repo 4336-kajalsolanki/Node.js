@@ -2,7 +2,7 @@ const express = require('express');
 
 const routes = express.Router();
 
-const { loginPage, registerPage, registerUser, loginUser, dashboardPage } = require('../controllers/AuthController');
+const { loginPage, registerPage, registerUser, loginUser, dashboardPage,logoutUser,contactPage } = require('../controllers/AuthController');
 
 const passport = require('passport');
 
