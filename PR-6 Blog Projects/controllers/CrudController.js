@@ -86,11 +86,26 @@ const UpdateBlog = async (req, res) => {
     }
 }
 
+const readMore = async(req,res)=>{
+    try{
+        let id = req.query.id;
+    let single = await BlogModel.findById(id)
+    return res.render('readmore',{
+        single
+    })
+    }catch(err){
+        console.log(err);
+        return false
+        
+    }
+}
+
 module.exports = {
     AddBlog,
     insertBlog,
     Showblog,
     deleteBlog,
     editBlog,
-    UpdateBlog
+    UpdateBlog,
+    readMore
 };

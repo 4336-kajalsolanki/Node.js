@@ -79,6 +79,13 @@
             .comment-footer {
                 margin-top: 1rem;
             }
+            .read-more {
+                color: #007bff;
+                text-decoration: none;
+            }
+            .read-more:hover {
+                color: #dc3545;
+            }
         </style>
     </head>
 
@@ -106,7 +113,8 @@
                                         <%= val.title %>
                                     </h5>
                                     <p class="card-text">
-                                        <%= val.description %>
+                                        <%= val.description.slice(0,100) %>....
+                                        <a href="/readmore?id=<%= val.id %>" class="read-more">read more</a>
                                     </p>
                                     <div class="comment-footer">
                                         <a href="/editBlog?editId=<%= val.id %>"
