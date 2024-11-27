@@ -96,7 +96,6 @@ const readMore = async(req,res)=>{
     }catch(err){
         console.log(err);
         return false
-        
     }
 }
 

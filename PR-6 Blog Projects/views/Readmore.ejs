@@ -45,7 +45,7 @@
         }
 
         .header .logout-btn,
-        .header .dashboard-btn {
+        .header .admin-btn {
             background: linear-gradient(to right, #ff9966, #ff5e62);
             color: white;
             border: none;
@@ -55,11 +55,11 @@
         }
 
         .header .logout-btn:hover,
-        .header .dashboard-btn:hover {
+        .header .admin-btn:hover {
             background: linear-gradient(to right, #ff5e62, #ff9966);
         }
 
-        .header .dashboard-btn {
+        .header .admin-btn {
             margin-left: 20px;
         }
 
@@ -91,15 +91,15 @@
             justify-content: center;
         }
 
-        .blog-name {
-            font-size: 1.8rem;
+        .title {
+            font-size: 1.5rem;
             font-weight: bold;
             color: #6a11cb;
             margin-bottom: 15px;
         }
 
-        .blog-description {
-            font-size: 1rem;
+        .description {
+            font-size: 1.8rem;
             color: #333;
             line-height: 1.6;
         }
@@ -111,7 +111,7 @@
     <div class="header">
         <div class="logo">Admin Panel</div>
         <div>
-            <!-- <a href="/dashboard" class="dashboard-btn">Dashboard</a> -->
+            <a href="/admin" class="admin-btn">Show Blogs</a>
             <a href="/logout" class="logout-btn">Logout</a>
         </div>
     </div>
@@ -125,10 +125,10 @@
                 <img src="<%= single.image %>" alt="Current Image" class="img-fluid rounded">
             </div>
             <div class="card-body">
-                <div class="title">
+                <div class="title">Title:
                     <%= single.title %>
                 </div>
-                <div class="description">
+                <div class="description">Description:
                     <%= single.description %>
                 </div>
             </div>
