@@ -1,5 +1,7 @@
 const nodemailer = require('nodemailer');
+
 const UserModel = require('../models/UserModel');
+
 const loginPage = (req, res) => {
     if (res.locals.user) {
         return res.redirect('/dashboard');
@@ -59,7 +61,7 @@ const forgotPassword = async (req, res) => {
             service: 'gmail',
             auth: {
                 user: 'solankikajal0708@gmail.com',
-                pass: 'kajal782'
+                pass: 'msuq diyd yhvf efyw'
             }
         });
         var mailOptions = {
