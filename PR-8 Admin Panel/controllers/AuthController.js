@@ -70,7 +70,7 @@ const forgotPassword = async (req, res) => {
             subject: 'Sending Email Using Node.js',
             html: `
                 <h1>Forgot Password</h1>
-                <h2>Company Name :- rudra infotech</h2>
+                <h2>Company Name :- prujal infotech</h2>
                 <h3 style="color:green">Hello ${user.name} Your Otp :- ${otp}</h3>
                 <h3>Thank you</h3>
              `

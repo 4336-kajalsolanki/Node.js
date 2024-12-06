@@ -26,6 +26,6 @@ routes.post('/profilechange', profileChange)
 
 // Change Password //
 routes.get('/changepassword', changePassword)
-routes.post('/postChangepassword',)
+routes.post('/postChangepassword', postChangepassword)
 
 module.exports = routes;

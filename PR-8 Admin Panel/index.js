@@ -12,13 +12,18 @@ const db = require('./config/db');
 
 const cookieParser = require('cookie-parser');
 
+var flash = require('connect-flash');
+
 app.use('/', express.static(path.join(__dirname, 'public')));
+
 app.use(cookieParser());
+
+// Passport.js //
 const passport = require('passport');
 const passportLocal = require('./config/passportLocal');
 const session = require('express-session');
 app.use(session({
-    secret: 'kajal',
+    secret: 'rnw3',
     resave: true,
     saveUninitialized: true,
     cookie: {
@@ -29,6 +34,13 @@ app.use(session({
 app.use(passport.session());
 app.use(passport.initialize());
 app.use(passport.setUser);
+app.use(flash());
+
+app.use((req, res, next) => {
+    res.locals.message = req.flash();
+    return next();
+})
+
 app.use(express.urlencoded());
 
 app.use('/', require('./routes/indexRoute'));

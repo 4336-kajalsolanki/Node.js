@@ -57,7 +57,7 @@
                     <!-- Form -->
                     <h2 class="text-white">Profile Page</h2>
                     <form method="post" class="form-horizontal mt-3" action="/profilechange">
-                        <input type="hidden" name="editprofile" value="<%= locals.user.email %>">
+                        <input type="hidden" name="editprofile" value="<%= locals?.user?.email %>">
                         <div class="row pb-4">
                             <div class="col-12">
                                 <div class="input-group mb-3">
