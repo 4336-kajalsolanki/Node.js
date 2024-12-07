@@ -47,14 +47,14 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">No.</th>
-                                            <th scope="col">category_name</th>
+                                            <th scope="col">Category</th>
                                             <th scope="col">Subcategory</th>
                                             <th scope="col">Action</th>
                                             <th scope="col">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <% categories.map((subcat,i)=> { %>
+                                        <% subcategory.map((subcat,i)=> { %>
                                             <tr>
                                                 <td>
                                                     <%= ++i %>
@@ -72,12 +72,18 @@
                                                         href="/subcategory/deletesubcategory?id=<%= subcat.id %>">Delete</a>
                                                 </td>
                                                 <td>
-                                                    <% if(subcat.status=="active") { %>
-                                                        <a href="/subcategory/changestatus?id=<%= subcat.id %>&status=<%= subcat.status %>" class="btn btn-success"><%= subcat.status %></a>
+                                                    <% if(subcat.status=="active" ) { %>
+                                                        <a class="btn btn-success"
+                                                            href="/subcategory/changestatus?id=<%= subcat.id %>&status=<%= subcat.status %>">
+                                                            <%= subcat.status %>
+                                                        </a>
                                                         <!-- // Deactive Thavu Joie // -->
-                                                    <% } else { %>
-                                                        <a href="/subcategory/changestatus?id=<%= subcat.id %>&status=<%= subcat.status %>" class="btn btn-warning"><%= subcat.status %></a>
-                                                    <% } %>
+                                                        <% } else { %>
+                                                            <a class="btn btn-warning"
+                                                                href="/subcategory/changestatus?id=<%= subcat.id %>&status=<%= subcat.status %>">
+                                                                <%= subcat.status %>
+                                                            </a>
+                                                            <% } %>
                                                 </td>
                                             </tr>
                                             <% }) %>

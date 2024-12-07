@@ -1,6 +1,6 @@
 const CategoryModel = require('../models/CategoryModel');
 
-const addCategoryPage = async(req, res) => {
+const addCategoryPage = async (req, res) => {
     return res.render('add_category')
 }
 
@@ -17,7 +17,7 @@ const viewCategoryPage = async (req, res) => {
 const insertCategory = async (req, res) => {
     try {
         await CategoryModel.create({
-            category_name: req.body.category  
+            category_name: req.body.category
         })
         console.log("Category Successfully Create");
         req.flash("success", "Category Successfully Register");
@@ -65,24 +65,24 @@ const updateCategory = async (req, res) => {
     }
 }
 
-const changeStatus = async(req,res) => {
+const changeStatus = async (req, res) => {
     try {
         let id = req.query.id;
         let st = req.query.status;
-        if(st=="active") {
-            await CategoryModel.findByIdAndUpdate(id,{
-                status : "deactive"
+        if (st == "active") {
+            await CategoryModel.findByIdAndUpdate(id, {
+                status: "deactive"
             })
-            req.flash('success','Status Successfully Changed!');
+            req.flash('success', 'Status Successfully Changed!');
             return res.redirect('/category/viewcategory');
         } else {
-            await CategoryModel.findByIdAndUpdate(id,{
-                status : "active"
+            await CategoryModel.findByIdAndUpdate(id, {
+                status: "active"
             })
-            req.flash('success','Status Successfully Changed!');
+            req.flash('success', 'Status Successfully Changed!');
             return res.redirect('/category/viewcategory');
         }
-    }catch(err){
+    } catch (err) {
         console.log(err);
         return false;
     }

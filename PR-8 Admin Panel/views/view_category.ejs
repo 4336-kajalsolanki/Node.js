@@ -68,12 +68,18 @@
                                                         href="/category/deletecategory?id=<%= cat.id %>">Delete</a>
                                                 </td>
                                                 <td>
-                                                    <% if(cat.status=="active") { %>
-                                                        <a href="/category/changestatus?id=<%= cat.id %>&status=<%= cat.status %>" class="btn btn-success"><%= cat.status %></a>
+                                                    <% if(cat.status=="active" ) { %>
+                                                        <a href="/category/changestatus?id=<%= cat.id %>&status=<%= cat.status %>"
+                                                            class="btn btn-success">
+                                                            <%= cat.status %>
+                                                        </a>
                                                         <!-- // Deactive Thavu Joie // -->
-                                                    <% } else { %>
-                                                        <a href="/category/changestatus?id=<%= cat.id %>&status=<%= cat.status %>" class="btn btn-warning"><%= cat.status %></a>
-                                                    <% } %>
+                                                        <% } else { %>
+                                                            <a href="/category/changestatus?id=<%= cat.id %>&status=<%= cat.status %>"
+                                                                class="btn btn-warning">
+                                                                <%= cat.status %>
+                                                            </a>
+                                                            <% } %>
                                                 </td>
                                             </tr>
                                             <% }) %>
