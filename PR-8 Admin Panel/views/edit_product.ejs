@@ -1,0 +1,200 @@
+<%- include('header') %>
+
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Form Basic</h4>
+                    <div class="ms-auto text-end">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Library
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <% if(locals.message.success) { %>
+                    <div class="alert alert-success" role="alert">
+                        <%= locals.message.success %>
+                    </div>
+                    <% } %>
+                        <div class="col-md-7">
+                            <div class="card">
+                                <form action="/product/updateProduct" method="post" enctype="multipart/form-data"
+                                    class="form-horizontal">
+                                    <input type="hidden" name="editid" value="<%= single.id %>">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Edit Product</h4>
+                                        <div class="form-group row">
+                                            <label for="fname"
+                                                class="col-sm-3 text-right control-label col-form-label">Category
+                                                Name</label>
+                                            <div class="col-sm-9">
+                                                <select name="category" onchange="categoryRecord()" id="category"
+                                                    class="form-control">
+                                                    <option value="">--- Select Category ---</option>
+                                                    <% category.map((c)=>{ %>
+                                                        <option <% if(single.categoryId.category_name==c.category_name)
+                                                            { %> selected <% } %> value="<%= c.id %>"><%=
+                                                                        c.category_name %>
+                                                        </option>
+                                                        <% }) %>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="fname"
+                                                class="col-sm-3 text-right control-label col-form-label">Subcategory
+                                                Name</label>
+                                            <div class="col-sm-9">
+                                                <select name="subcategory" onchange="subcategoryRecord()"
+                                                    id="subcategory" class="form-control">
+                                                    <option value="">--- Select SubCategory ---</option>
+                                                    <% subcategory.map((subcat)=>{ %>
+                                                        <option <%
+                                                            if(single.subcategoryId.subcategory==subcat.subcategory) {
+                                                            %> selected <% } %> value="<%= subcat.id %>"><%=
+                                                                        subcat.subcategory %>
+                                                        </option>
+                                                        <% }) %>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="fname"
+                                                class="col-sm-3 text-right control-label col-form-label">ExtraSubcategory
+                                                Name</label>
+                                            <div class="col-sm-9">
+                                                <select name="extrasubcategory" id="extrasubcategory"
+                                                    class="form-control">
+                                                    <option value="">--- Select ExtraSubcategory ---</option>
+                                                    <% extrasubcategory.map((extrasubcat)=>{%>
+                                                        <option <%
+                                                            if(extrasubcat.extrasubcategory==single.extrasubcategoryId.extrasubcategory)
+                                                            { %> selected <% } %>value="<%= extrasubcat.id %>"><%=
+                                                                        extrasubcat.extrasubcategory %>
+                                                        </option>
+                                                        <% }) %>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="fname"
+                                                class="col-sm-3 text-right control-label col-form-label">Product</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" value="<%= single.name %>" class="form-control"
+                                                    id="product" name="product" placeholder="Enter Product Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="fname"
+                                                class="col-sm-3 text-right control-label col-form-label">Price</label>
+                                            <div class="col-sm-9">
+                                                <input type="number" value="<%= single.price %>" class="form-control"
+                                                    id="price" name="price" placeholder="Enter Price">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="fname"
+                                                class="col-sm-3 text-right control-label col-form-label">Description</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" value="<%= single.description %>"
+                                                    class="form-control" id="description" name="description"
+                                                    placeholder="Enter Description">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="image"
+                                                class="col-sm-3 text-right control-label col-form-label">Image</label>
+                                            <div class="col-sm-9">
+                                                <input type="file" class="form-control" id="image" name="image">
+                                                <div class="mt-3">
+                                                    <img src="../<%= single.image %>" width="200" alt="image">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="border-top">
+                                        <div class="card-body">
+                                            <button type="submit" class="btn btn-primary">
+                                                Submit
+                                            </button>
+                                            <a href="/product" class="btn btn-info">View Product</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <footer class="footer text-center">
+            All Rights Reserved by Matrix-admin. Designed and Developed by
+            <a href="https://www.wrappixel.com">WrapPixel</a>.
+        </footer>
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        const categoryRecord = () => {
+            let catId = document.getElementById("category").value;
+            $.ajax({
+                type: 'GET',
+                url: `/extrasubcategory/ajaxgetcategory?id=${catId}`,
+                success: function (res) {
+                    let category = res.category
+                    let tbl = "";
+                    tbl += `<option value="">--- Select Subcategory ---</option>`;
+                    category.map((subcat) => {
+                        tbl += `<option value=${subcat._id}>${subcat.subcategory}</option>`
+                    })
+                    document.getElementById("subcategory").innerHTML = tbl;
+                }
+            })
+        }
+
+        const subcategoryRecord = () => {
+            let subcateId = document.getElementById("subcategory").value;
+            $.ajax({
+                type: 'GET',
+                url: `/product/ajaxsubcategorywiserecord?id=${subcateId}`,
+                success: function (res) {
+                    let extrasubcategory = res.extrasubcategory;
+                    let tbl = "";
+                    tbl += `<option value="">--- Select ExtraSubcategory ---</option>`;
+                    extrasubcategory.map((extrasub) => {
+                        tbl += `<option value=${extrasub._id}>${extrasub.extrasubcategory}</option>`
+                    })
+                    document.getElementById("extrasubcategory").innerHTML = tbl;
+                }
+            })
+        } 
+    </script>
+
+    <%- include('footer') %>

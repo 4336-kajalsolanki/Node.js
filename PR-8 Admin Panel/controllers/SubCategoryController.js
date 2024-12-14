@@ -1,5 +1,4 @@
 const CategoryModel = require('../models/CategoryModel');
-
 const SubCategoryModel = require('../models/SubCategoryModel');
 
 const subCategoryPage = async (req, res) => {

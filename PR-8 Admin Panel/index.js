@@ -6,15 +6,21 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-const path = require('path');
-
 const db = require('./config/db');
+
+const path = require('path');
 
 const cookieParser = require('cookie-parser');
 
-var flash = require('connect-flash');
+const flash = require('connect-flash');
+
+app.use(express.urlencoded());
+
+app.use(express.json());
 
 app.use('/', express.static(path.join(__dirname, 'public')));
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use(cookieParser());
 
@@ -40,8 +46,6 @@ app.use((req, res, next) => {
     res.locals.message = req.flash();
     return next();
 })
-
-app.use(express.urlencoded());
 
 app.use('/', require('./routes/indexRoute'));
 

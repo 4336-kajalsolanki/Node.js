@@ -48,8 +48,8 @@
                                         <tr>
                                             <th scope="col">No.</th>
                                             <th scope="col">Category</th>
-                                            <th scope="col">Action</th>
                                             <th scope="col">Status</th>
+                                            <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -62,24 +62,24 @@
                                                     <%= cat.category_name %>
                                                 </td>
                                                 <td>
-                                                    <a class="btn btn-sm btn-info"
-                                                        href="/category/editcategory?id=<%= cat.id %>">Edit</a>
-                                                    <a class="btn btn-sm btn-danger"
-                                                        href="/category/deletecategory?id=<%= cat.id %>">Delete</a>
-                                                </td>
-                                                <td>
                                                     <% if(cat.status=="active" ) { %>
                                                         <a href="/category/changestatus?id=<%= cat.id %>&status=<%= cat.status %>"
                                                             class="btn btn-success">
                                                             <%= cat.status %>
                                                         </a>
-                                                        <!-- // Deactive Thavu Joie // -->
+                                                        <!-- // Deactive // -->
                                                         <% } else { %>
                                                             <a href="/category/changestatus?id=<%= cat.id %>&status=<%= cat.status %>"
                                                                 class="btn btn-warning">
                                                                 <%= cat.status %>
                                                             </a>
                                                             <% } %>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-info"
+                                                        href="/category/editcategory?id=<%= cat.id %>">Edit</a>
+                                                    <a class="btn btn-danger"
+                                                        href="/category/deletecategory?id=<%= cat.id %>">Delete</a>
                                                 </td>
                                             </tr>
                                             <% }) %>

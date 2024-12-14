@@ -13,6 +13,6 @@ routes.get('/deleteextrasubcategory', deleteExtraSubcategory);
 routes.get('/editextrasubcategory', editExtraSubcategory);
 routes.post('/updateextrasubcategory', updateExtraSubcategory);
 routes.get('/changestatus', ChangeStatus);
-routes.get('/ajaxgetcategory', ajaxGetCategory)
+routes.get('/ajaxgetcategory', ajaxGetCategory);
 
 module.exports = routes;

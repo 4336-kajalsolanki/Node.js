@@ -49,8 +49,8 @@
                                             <th scope="col">No.</th>
                                             <th scope="col">Category</th>
                                             <th scope="col">Subcategory</th>
-                                            <th scope="col">Action</th>
                                             <th scope="col">Status</th>
+                                            <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -66,24 +66,24 @@
                                                     <%= subcat.subcategory %>
                                                 </td>
                                                 <td>
-                                                    <a class="btn btn-sm btn-info"
-                                                        href="/subcategory/editsubcategory?id=<%= subcat.id %>">Edit</a>
-                                                    <a class="btn btn-sm btn-danger"
-                                                        href="/subcategory/deletesubcategory?id=<%= subcat.id %>">Delete</a>
-                                                </td>
-                                                <td>
                                                     <% if(subcat.status=="active" ) { %>
                                                         <a class="btn btn-success"
                                                             href="/subcategory/changestatus?id=<%= subcat.id %>&status=<%= subcat.status %>">
                                                             <%= subcat.status %>
                                                         </a>
-                                                        <!-- // Deactive Thavu Joie // -->
+                                                        <!-- // Deactive // -->
                                                         <% } else { %>
                                                             <a class="btn btn-warning"
                                                                 href="/subcategory/changestatus?id=<%= subcat.id %>&status=<%= subcat.status %>">
                                                                 <%= subcat.status %>
                                                             </a>
                                                             <% } %>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-info"
+                                                        href="/subcategory/editsubcategory?id=<%= subcat.id %>">Edit</a>
+                                                    <a class="btn btn-danger"
+                                                        href="/subcategory/deletesubcategory?id=<%= subcat.id %>">Delete</a>
                                                 </td>
                                             </tr>
                                             <% }) %>
