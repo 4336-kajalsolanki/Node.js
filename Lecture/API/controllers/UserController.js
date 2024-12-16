@@ -1,8 +1,32 @@
 const UserModel = require('../models/UserModel');
 
+const demoResponse = (req, res) => {
+    return res.status(200).send({
+        success: true,
+        message: "All Done"
+    })
+}
+
 const addUser = async (req, res) => {
     try {
         const { name, email, password, city, phone } = req.body;
+        if (!name || !email || !password || !city || !phone) {
+            return res.status(500).send({
+                success: false,
+                message: "All Field Is Required.",
+            })
+        }
+
+        let duplicate = await UserModel.findOne({ email: email });
+        console.log(duplicate);
+
+        if (duplicate) {
+            return res.status(200).send({
+                success: false,
+                message: "User Is Already Register",
+            })
+        }
+
         let user = await UserModel.create({
             name: name,
             email: email,
@@ -23,6 +47,23 @@ const addUser = async (req, res) => {
     }
 }
 
+const viewUser = async (req, res) => {
+    try {
+        let users = await UserModel.find({});
+        return res.status(200).send({
+            success: true,
+            message: "User Successfully Fetch",
+            data: users,
+            userslength: users.length
+        })
+    } catch (err) {
+        return res.status(501).send({
+            success: false,
+            err: err
+        })
+    }
+}
+
 module.exports = {
-    addUser
+    demoResponse, addUser, viewUser
 }

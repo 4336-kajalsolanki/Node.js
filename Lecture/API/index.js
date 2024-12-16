@@ -4,8 +4,7 @@ const port = 5000;
 
 const app = express();
 
-const database = require('./config/db')
-database();
+const db = require('./config/db');
 
 app.use(express.urlencoded());
 

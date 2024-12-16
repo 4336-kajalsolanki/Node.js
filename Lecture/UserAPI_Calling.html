@@ -1,0 +1,39 @@
+<div align="center">
+    <table border="2">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody id="users"></tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    const getUser = async () => {
+        try {
+            let users = await fetch(`http://localhost:5000/user/viewuser`);
+            let res = await users.json();
+            if (res.success) {
+                let record = res.users;
+                tbl = "";
+                record.map((val) => {
+                    tbl += `
+                          <tr>
+                            <td>${val._id}</td>
+                            <td>${val.name}</td>
+                            <td>${val.email}</td>
+                          </tr>  
+                       `
+                })
+                document.getElementById('users').innerHTML = tbl;
+            }
+        } catch (err) {
+            console.log(err);
+            return false;
+        }
+    }
+    getUser();
+</script>
