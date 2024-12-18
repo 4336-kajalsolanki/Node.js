@@ -35,7 +35,8 @@ const insertExtraSubcategory = async (req, res) => {
             subcategoryId: subcategory,
             extrasubcategory: extrasubcategory
         })
-        console.log("Extrasubcategory Is Add");
+        console.log("ExtraSubcategory Is Add");
+        req.flash("success", "ExtraSubcategory Successfully Register");
         return res.redirect('/extrasubcategory');
     } catch (err) {
         console.log(err);
@@ -47,7 +48,8 @@ const deleteExtraSubcategory = async (req, res) => {
     try {
         let id = req.query.id;
         await ExtraSubCategoryModel.findByIdAndDelete(id);
-        console.log('ExtrasubCategory Successfully Deleted...');
+        console.log('ExtraSubcategory Successfully Deleted...');
+        req.flash("danger", "ExtraSubcategory Successfully Delete");
         return res.redirect('/extrasubcategory')
     } catch (err) {
         console.log(err);
@@ -97,13 +99,15 @@ const ChangeStatus = async (req, res) => {
             await ExtraSubCategoryModel.findByIdAndUpdate(id, {
                 status: "deactive"
             })
-            console.log('Category Status Changed To Deactive...');
+            console.log('ExtraSubcategory Status Changed To Deactive...');
+            req.flash('success', 'ExtraSubcategory Status Successfully Changed!');
             return res.redirect('/extrasubcategory')
         } else {
             await ExtraSubCategoryModel.findByIdAndUpdate(id, {
                 status: "active"
             })
-            console.log('Category Status Changed To Active...');
+            console.log('ExtraSubcategory Status Changed To Active...');
+            req.flash('success', 'ExtraSubcategory Status Successfully Changed!');
             return res.redirect('/extrasubcategory')
         }
     } catch (err) {

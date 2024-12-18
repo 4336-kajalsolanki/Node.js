@@ -47,6 +47,7 @@ const insertProduct = async (req, res) => {
             image: req.file.path
         })
         console.log("Product Insert");
+        req.flash("success", "Product Successfully Register");
         return res.redirect('/product/addproduct');
     } catch (err) {
         console.log(err);
@@ -61,6 +62,7 @@ const deleteProduct = async (req, res) => {
         fs.unlinkSync(single.image);
         await ProductModel.findByIdAndDelete(id);
         console.log('Product Deleted...');
+        req.flash("danger", "Product Successfully Delete");
         return res.redirect('/product')
     } catch (err) {
         console.log(err);
@@ -133,13 +135,15 @@ const ChangeStatus = async (req, res) => {
             await ProductModel.findByIdAndUpdate(id, {
                 status: "deactive"
             })
-            console.log('Category Status Changed To Deactive...');
+            console.log('Product Status Changed To Deactive...');
+            req.flash('success', 'Product Status Successfully Changed!');
             return res.redirect('/product')
         } else {
             await ProductModel.findByIdAndUpdate(id, {
                 status: "active"
             })
-            console.log('Category Status Changed To Active...');
+            console.log('Product Status Changed To Active...');
+            req.flash('success', 'Product Status Successfully Changed!');
             return res.redirect('/product')
         }
     } catch (err) {

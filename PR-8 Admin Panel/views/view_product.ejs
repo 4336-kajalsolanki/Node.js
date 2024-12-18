@@ -65,25 +65,25 @@
                                                     <%= ++i %>
                                                 </td>
                                                 <td>
-                                                    <%= p.categoryId?.category_name %>
+                                                    <%= p?.categoryId?.category_name %>
                                                 </td>
                                                 <td>
-                                                    <%= p.subcategoryId?.subcategory %>
+                                                    <%= p?.subcategoryId?.subcategory %>
                                                 </td>
                                                 <td>
-                                                    <%= p.extrasubcategoryId.extrasubcategory %>
+                                                    <%= p?.extrasubcategoryId?.extrasubcategory %>
                                                 </td>
                                                 <td>
-                                                    <%= p.name %>
+                                                    <%= p?.name %>
                                                 </td>
                                                 <td>
-                                                    <%= p.price %>
+                                                    <%= p?.price %>
                                                 </td>
                                                 <td>
-                                                    <%= p.description %>
+                                                    <%= p?.description %>
                                                 </td>
                                                 <td>
-                                                    <img src="<%= p.image %>" width="100" alt="image">
+                                                    <img src="<%= p?.image %>" width="100" alt="image">
                                                 </td>
                                                 <td>
                                                     <% if(p.status=="active" ) { %>

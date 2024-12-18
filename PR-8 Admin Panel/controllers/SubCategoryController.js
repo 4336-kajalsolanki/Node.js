@@ -33,6 +33,7 @@ const insertSubcategory = async (req, res) => {
             subcategory: subcategory
         })
         console.log("Subcategory Is Create");
+        req.flash("success", "Subcategory Successfully Register");
         return res.redirect('/subcategory/addsubcategory');
     } catch (err) {
         console.log(err);
@@ -57,6 +58,7 @@ const deleteSubcategory = async (req, res) => {
         let id = req.query.id;
         await SubCategoryModel.findByIdAndDelete(id);
         console.log('Subcategory Successfully Deleted...');
+        req.flash("danger", "Subcategory Successfully Delete");
         return res.redirect('/subcategory/viewsubcategory');
     } catch (err) {
         console.log(err);
@@ -102,13 +104,17 @@ const changeStatus = async (req, res) => {
             await SubCategoryModel.findByIdAndUpdate(id, {
                 status: "deactive"
             })
+            console.log('Subcategory Status Changed To Deactive...');
+            req.flash('success', 'Subcategory Status Successfully Changed!');
+            return res.redirect('/subcategory/viewsubcategory')
         } else {
             await SubCategoryModel.findByIdAndUpdate(id, {
                 status: "active"
             })
+            console.log('Subcategory Status Changed To Active...');
+            req.flash('success', 'Subcategory Status Successfully Changed!');
+            return res.redirect('/subcategory/viewsubcategory')
         }
-        console.log("Status Successfully Changed!");
-        return res.redirect('/subcategory/viewsubcategory')
     } catch (err) {
         console.log(err);
         return false;

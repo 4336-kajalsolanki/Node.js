@@ -73,13 +73,15 @@ const changeStatus = async (req, res) => {
             await CategoryModel.findByIdAndUpdate(id, {
                 status: "deactive"
             })
-            req.flash('success', 'Status Successfully Changed!');
+            console.log('Category Status Changed To Deactive...');
+            req.flash('success', 'Category Status Successfully Changed!');
             return res.redirect('/category/viewcategory');
         } else {
             await CategoryModel.findByIdAndUpdate(id, {
                 status: "active"
             })
-            req.flash('success', 'Status Successfully Changed!');
+            console.log('Category Status Changed To Active...');
+            req.flash('success', 'Category Status Successfully Changed!');
             return res.redirect('/category/viewcategory');
         }
     } catch (err) {
