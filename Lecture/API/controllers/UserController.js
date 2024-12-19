@@ -1,12 +1,5 @@
 const UserModel = require('../models/UserModel');
 
-const demoResponse = (req, res) => {
-    return res.status(200).send({
-        success: true,
-        message: "All Done"
-    })
-}
-
 const addUser = async (req, res) => {
     try {
         const { name, email, password, city, phone } = req.body;
@@ -97,7 +90,6 @@ const updateUser = async (req, res) => {
         return res.status(200).send({
             success: true,
             message: "User Successfully Update",
-            user,
         })
     } catch (err) {
         return res.status(501).send({
@@ -108,5 +100,5 @@ const updateUser = async (req, res) => {
 }
 
 module.exports = {
-    demoResponse, addUser, viewUser, deleteUser, updateUser
+    addUser, viewUser, deleteUser, updateUser
 }
