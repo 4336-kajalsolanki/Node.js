@@ -11,7 +11,7 @@ const addUser = async (req, res) => {
         }
 
         let duplicate = await UserModel.findOne({ email: email });
-        console.log(duplicate);
+        // console.log(duplicate);
 
         if (duplicate) {
             return res.status(200).send({
@@ -30,7 +30,7 @@ const addUser = async (req, res) => {
         return res.status(200).send({
             success: true,
             message: "User Successfully Create",
-            user
+            user,
         })
     } catch (err) {
         return res.status(501).send({
@@ -46,8 +46,8 @@ const viewUser = async (req, res) => {
         return res.status(200).send({
             success: true,
             message: "User Successfully Fetch",
-            data: users,
-            userslength: users.length
+            length: users.length,
+            users,
         })
     } catch (err) {
         return res.status(501).send({

@@ -5,8 +5,6 @@ const UserModel = require('../models/UserModel');
 const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
-
-
         if (!email || !password) {
             return res.status(500).send({
                 success: false,
@@ -14,8 +12,6 @@ const loginUser = async (req, res) => {
             })
         }
         let user = await UserModel.findOne({ email: email });
-
-
         if (!user || user.password !== password) {
             return res.status(500).send({
                 success: false,
