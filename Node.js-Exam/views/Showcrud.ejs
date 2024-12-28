@@ -1,0 +1,135 @@
+<%- include('Header') %>
+    <div class="page-wrapper">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Show Crud</h4>
+                    <a href="/add" class="btn btn-custom">Add Crud</a>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Insta Posts</h4>
+                            <div class="row">
+                                <% crud.map((val)=> { %>
+                                    <div class="col-md-6 col-lg-4 mb-4">
+                                        <div class="card border-0 shadow-sm">
+                                            <img src="<%= val.image %>" alt="Crud Image"
+                                                class="card-img-top rounded-top" />
+                                            <div class="card-body">
+                                                <h5 class="card-name">
+                                                    <%= val.name %>
+                                                </h5>
+                                                <h6 class="card-price">
+                                                    <%= val.Price %>
+                                                </h6>
+                                                <h6 class="card-qty">
+                                                    <%= val.qty %>
+                                                </h6>
+                                                <p class="card-text">
+                                                    <%= val.description.slice(0,100) %>...
+                                                    <a href="/readmore?id=<%= val.id %>" class="read-more">Read More</a>
+                                                </p>
+                                                <div class="d-flex justify-content-between">
+                                                    <a class="btn btn-primary"
+                                                        href="/editcrud?editId=<%= val.id %>">Edit</a>
+                                                    <a class="btn btn-danger"
+                                                        href="/deletecrud?deleteId=<%= val.id %>">Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% }); %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('Footer') %>
+
+        <style>
+            body {
+                background-color: #919aa2;
+            }
+
+            .page-title {
+                font-weight: bold;
+                font-size: 28px;
+            }
+
+            .card {
+                border-radius: 15px;
+                overflow: hidden;
+            }
+
+            .card-img-top {
+                height: 200px;
+                object-fit: cover;
+            }
+
+            .card-title {
+                font-size: 20px;
+                font-weight: bold;
+                color: #333;
+            }
+
+            .card-text {
+                font-size: 14px;
+                color: #666;
+            }
+
+            .btn-custom {
+                background-color: #343a40;
+                border: none;
+                color: white;
+                padding: 0.75rem 1.25rem;
+                border-radius: 5px;
+                transition: background-color 0.2s ease;
+                margin-left: 1100px;
+            }
+
+            .btn-custom:hover {
+                background-color: #343a40;
+            }
+
+            .btn-outline-custom {
+                border-color: #343a40;
+                color: #343a40;
+                background: transparent;
+            }
+
+            .btn-outline-custom:hover {
+                background-color: #343a40;
+                color: white;
+            }
+
+            .btn {
+                border-radius: 20px;
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+
+            .btn-primary {
+                background-color: #3897f0;
+                border: none;
+            }
+
+            .btn-danger {
+                background-color: #f44336;
+                border: none;
+            }
+
+            .btn-primary:hover {
+                background-color: #2a82d4;
+            }
+
+            .btn-danger:hover {
+                background-color: #c62828;
+            }
+        </style>
