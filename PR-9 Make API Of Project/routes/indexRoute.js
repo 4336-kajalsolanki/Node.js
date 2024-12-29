@@ -6,7 +6,7 @@ routes.use('/', require('./authRoute'));
 
 routes.use('/user', require('./userRoute'));
 
-routes.use('/post', require('./postRoute'));
+routes.use('/blog', require('./blogRoute'));
 
 routes.use('/admin', require('./adminRoute'));
 

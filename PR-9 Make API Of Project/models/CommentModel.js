@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
 const commentSchema = mongoose.Schema({
+    blogid: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "blog"
+    },
     userid: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user"
-    },
-    postid: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "post"
     },
     comment: {
         type: String,

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const conn = mongoose.connect(`mongodb+srv://kajalsolanki:kajal@cluster0.ctxvl.mongodb.net/api`);
+const conn = mongoose.connect(`mongodb+srv://kajalsolanki:kajal@cluster0.ctxvl.mongodb.net/apiproject`);
 
 const db = mongoose.connection;
 

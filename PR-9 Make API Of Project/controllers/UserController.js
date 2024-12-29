@@ -1,6 +1,6 @@
 const UserModel = require('../models/UserModel');
 
-const addUser = async (req, res) => {
+const registerUser = async (req, res) => {
     try {
         const { name, email, password, city, phone } = req.body;
         if (!name || !email || !password || !city || !phone) {
@@ -100,5 +100,5 @@ const updateUser = async (req, res) => {
 }
 
 module.exports = {
-    addUser, viewUser, deleteUser, updateUser
+    registerUser, viewUser, deleteUser, updateUser
 }

@@ -1,6 +1,6 @@
-const PostModel = require('../models/PostModel');
+const PostModel = require('../models/BlogModel');
 
-const allPost = async (req, res) => {
+const AllBlogShow = async (req, res) => {
     try {
         let posts = await PostModel.find({}).populate('userid');
         return res.status(200).send({
@@ -17,5 +17,5 @@ const allPost = async (req, res) => {
 }
 
 module.exports = {
-    allPost
+    AllBlogShow
 }
