@@ -6,8 +6,11 @@ const { addBlog, viewBlog, deleteBlog, updateBlog } = require('../controllers/Bl
 
 const { verifyToken } = require('../middleware/Auth');
 
+const path = require('path');
+
 // File Upload //
 const multer = require('multer');
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads')
@@ -23,6 +26,6 @@ const upload = multer({ storage: storage }).single('image');
 routes.post('/addblog', verifyToken, upload, addBlog);
 routes.get('/viewblog', verifyToken, viewBlog);
 routes.delete('/deleteblog', verifyToken, deleteBlog);
-routes.put('/updateblog', verifyToken, updateBlog);
+routes.put('/updateblog', verifyToken, upload, updateBlog);
 
 module.exports = routes;

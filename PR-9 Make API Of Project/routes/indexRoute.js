@@ -10,4 +10,6 @@ routes.use('/blog', require('./blogRoute'));
 
 routes.use('/admin', require('./adminRoute'));
 
+routes.use('/comment', require('./commentRoute'));
+
 module.exports = routes;

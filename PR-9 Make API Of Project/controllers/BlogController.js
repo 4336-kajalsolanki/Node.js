@@ -1,5 +1,8 @@
 const BlogModel = require('../models/BlogModel');
 
+const path = require('path');
+const fs = require('fs');
+
 const addBlog = async (req, res) => {
     try {
         const { title, description } = req.body;
@@ -48,6 +51,8 @@ const viewBlog = async (req, res) => {
 const deleteBlog = async (req, res) => {
     try {
         let id = req.query.id;
+        let single = await BlogModel.findById(id);
+        fs.unlinkSync(single.image);
         await BlogModel.findByIdAndDelete(id);
         return res.status(200).send({
             success: true,
@@ -63,6 +68,8 @@ const updateBlog = async (req, res) => {
     try {
         const { userid, title, description } = req.body;
         if (!title || !description || !req.file) {
+            let single = await BlogModel.findById(userid);
+            fs.unlinkSync(single.image);
             return res.status(500).send({
                 success: false,
                 message: "All Field Is Required.",

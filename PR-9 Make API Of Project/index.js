@@ -6,10 +6,16 @@ const app = express();
 
 const db = require('./config/db');
 
+const path = require('path');
+
+app.use(express.json());
+
 const cors = require('cors');
 app.use(cors());
 
 app.use(express.urlencoded());
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use('/', require('./routes/indexRoute'));
 
