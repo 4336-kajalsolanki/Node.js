@@ -1,12 +1,12 @@
-const PostModel = require('../models/BlogModel');
+const BlogModel = require('../models/BlogModel');
 
 const AllBlogShow = async (req, res) => {
     try {
-        let posts = await PostModel.find({}).populate('userid');
+        let blogs = await BlogModel.find({}).populate('userid');
         return res.status(200).send({
             success: true,
-            message: "Post Successfully Fetch",
-            posts
+            message: "Blogs Successfully Fetch",
+            blogs
         })
     } catch (err) {
         return res.status(501).send({
