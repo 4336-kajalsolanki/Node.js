@@ -16,7 +16,9 @@ const st = multer.diskStorage({
 })
 const fileUpload = multer({ storage: st }).single('image');
 
-routes.get('/add', Addcrud);
+const passport = require('passport');
+
+routes.get('/add',passport.checkUser, Addcrud);
 routes.get('/admin', Showcrud);
 routes.post('/insertcrud', fileUpload, insertCrud);
 routes.get('/deletecrud', deleteCrud);
