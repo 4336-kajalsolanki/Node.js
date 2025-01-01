@@ -68,13 +68,13 @@ const updateBlog = async (req, res) => {
     try {
         const { userid, title, description } = req.body;
         if (!title || !description || !req.file) {
-            let single = await BlogModel.findById(userid);
-            fs.unlinkSync(single.image);
             return res.status(500).send({
                 success: false,
                 message: "All Field Is Required.",
             })
         }
+        let single = await BlogModel.findById(userid);
+        fs.unlinkSync(single.image);
         await BlogModel.findByIdAndUpdate(userid, {
             userid: req.user._id,
             title: title,
